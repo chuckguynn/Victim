@@ -1,0 +1,15 @@
+
+
+<p>
+  <b>Post:</b>
+  <%= @tip.post_id %>
+</p>
+
+<p>
+  <b>Body:</b>
+  <%= @tip.body %>
+</p>
+
+
+<%= link_to 'Edit', edit_tip_path(@tip) %> |
+<%= link_to 'Back', tips_path %>

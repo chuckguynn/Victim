@@ -1,0 +1,15 @@
+<div class="comment">
+ <div class="well">
+  <p><%= tip.body %></p> 	  
+    <tr>
+	  <td>Posted:</td> 
+      <td> 
+      	<% if tip.created_at > Time.now.beginning_of_day %>
+	      <%= time_ago_in_words(tip.created_at) + " " + "ago" %>  
+		<% else %>
+		  <%= tip.created_at.strftime("%b %d, %Y") %>
+		<% end %>
+	  </td>	
+	</tr>
+  </div>
+</div>

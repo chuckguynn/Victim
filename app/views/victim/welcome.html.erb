@@ -1,0 +1,21 @@
+<% if user_signed_in? %>
+	<tr><h1>VICTIM</h1>
+	<h4>An Online Tool Assisting Victims of Crime</h4></tr>
+
+	
+	<h2><%= link_to "See Listed Crimes", posts_path, class: "btn" %></h2>
+	
+<% else %> 
+
+
+<div class="center hero-unit">
+    <h1>Welcome VICTIM!</h1>
+
+    <h4 class="well">
+      An Online Tool Assisting Victims of Crime.  Sign up and post your story, or browse through user posts and see if you can help solve a crime!  All tips are anonymous and not viewable by the public.
+    </h4>
+
+    <%= link_to "Sign up now!", new_user_registration_path, 
+                                class: "btn btn-large" %>
+</div>
+<% end %>

@@ -1,0 +1,56 @@
+
+
+<%= form_tag posts_path, :method => :get do %>
+    <h4>Look for crimes in your area</h4>
+<div class="well well-small">      
+  <p>
+    <%= text_field_tag :search, params[:search], :placeholder => "Ex. Atlanta, GA" %>
+    <%= submit_tag "Search Near", :name => nil %>
+    <label>"City", "State Initials"</label>
+  </p>
+  </div>
+    <p class="btn pull-right">
+    <%= link_to 'Post A New Crime', new_post_path %>
+  </p>
+
+<% end %>
+
+<div>
+  <h2>Crime Listings</h2>
+</div>
+
+<table class="table">
+  <thead>
+    <tr>
+    <td>Crime</td>
+    <td>Category</td>
+    <td>Location</td>
+    <td>Posted</td>
+  </tr>
+  </thead>
+
+
+
+
+<% @posts.each do |post| %>
+    
+  <tr class="well">
+    <td><a><%= link_to post.title, post %></a></td>
+    <td><%= post.crime %></td>
+    <td><%= post.address %></td>
+    <td>
+      <% if post.created_at > Time.now.beginning_of_day %>
+      <%= time_ago_in_words(post.created_at) + " " + "ago" %>  
+      <% else %>
+      <%= post.created_at.strftime("%b %d, %Y") %>
+      <% end %>
+    </td>
+  </tr>
+ 
+<% end %>
+</table>
+
+
+<br />
+
+

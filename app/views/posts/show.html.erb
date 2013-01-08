@@ -1,0 +1,44 @@
+
+<div class="container">
+<h3>
+  <%= @post.title %>
+</h3>
+  <div class="well">
+   <% if @post.image.exists? %>
+      <p class="img pull-right"><%= image_tag @post.image.url(:medium) %></p>
+      <% end %>
+    <p>
+      <b>Category:</b>
+      <%= @post.crime %>
+    </p>
+
+    <p>
+    <b>Location:</b>
+      <%= @post.address %>
+    </p>
+
+    <p>
+      <b>Details:</b>
+      <%= @post.details %>
+    </p>
+    
+    <% if user_signed_in? %>
+    <% if current_user.id == @post.user_id %>
+      <%= link_to 'Edit Post', edit_post_path(@post) %> |
+      <%= link_to "Delete Post", @post, :method => :delete, data: { confirm: 'Are you sure?' } %>
+    <% end %>
+    <% end %>
+  </div>  
+</div>
+<% if user_signed_in? %>
+<% if current_user.id == @post.user_id %>
+<div class="container">
+<h4>Your Tips</h4>
+<%= render partial: 'tip', collection: @post.tips %>
+</div>
+<% end %>
+<% end %>
+<%= render partial: 'tips/form' %>
+
+
+<%= link_to 'Back', posts_path %>
